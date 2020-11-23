@@ -12,7 +12,11 @@ const botTypeClasses = {
 const BotCard = props => {
 
 function handleClick(){
-  props.addToBotArmy(props.bot)
+  if(props.addToBotArmy){
+    props.addToBotArmy(props.bot)
+  } else {
+    props.releaseBot(props.bot)
+  }
 }
 
   return (
@@ -52,8 +56,10 @@ function handleClick(){
             <div className="ui center aligned segment basic">
               <button
                 className="ui mini red button"
-                onClick={() =>
-                  {props.deleteBot(props.bot)}}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  props.deleteBot(props.bot)
+                }}
               >
                 x
               </button>

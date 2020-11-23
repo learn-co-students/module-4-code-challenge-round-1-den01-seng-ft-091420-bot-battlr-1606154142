@@ -26,10 +26,8 @@ class BotsPage extends Component {
   }
 
   releaseBot = (bot) => {
-    let remainingBots = this.state.yourBots.filter(bot.it !== bot)
-    this.setState({
-      yourBots: remainingBots
-    })
+    let remainingBots = this.state.yourBots.filter(currentBot => currentBot !== bot)
+    this.setState({ yourBots: remainingBots })
   }
 
   deleteBot = (bot) => {
@@ -43,8 +41,16 @@ class BotsPage extends Component {
   render() {
     return(
       <div>
-        <YourBotArmy yourBots={this.state.yourBots} releaseBot={this.releaseBot}/>
-        <BotCollection bots={this.state.bots} addToBotArmy={this.addToBotArmy}/>
+        <YourBotArmy 
+          yourBots={this.state.yourBots} 
+          releaseBot={this.releaseBot}
+        />
+        <BotCollection 
+          bots={this.state.bots} 
+          addToBotArmy={this.addToBotArmy} 
+          releaseBot={this.releaseBot}
+          deleteBot={this.deleteBot}
+        />
       </div>
     );
   }
